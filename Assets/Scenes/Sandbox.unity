@@ -2634,16 +2634,6 @@ PrefabInstance:
       propertyPath: patrolPath
       value: 
       objectReference: {fileID: 536030662}
-    - target: {fileID: 1323379655550572238, guid: eee25fe1041655e449f9396bae7b431b,
-        type: 3}
-      propertyPath: shouldMove
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1323379655550572238, guid: eee25fe1041655e449f9396bae7b431b,
-        type: 3}
-      propertyPath: suspicionTime
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4157366812593991272, guid: eee25fe1041655e449f9396bae7b431b,
         type: 3}
       propertyPath: m_RootOrder
@@ -2698,11 +2688,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4157366812593991273, guid: eee25fe1041655e449f9396bae7b431b,
-        type: 3}
-      propertyPath: m_Speed
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4157366812593991284, guid: eee25fe1041655e449f9396bae7b431b,
         type: 3}
@@ -3313,11 +3298,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerCharacter
-      objectReference: {fileID: 0}
-    - target: {fileID: 8317106366143595338, guid: 681b204c6df3c9f4c9ae5a55703f18f4,
-        type: 3}
-      propertyPath: healthPoints
-      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 681b204c6df3c9f4c9ae5a55703f18f4, type: 3}

@@ -80,6 +80,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1254781405, guid: 737b458a4b5a26f4bb1c24f01a32fd1d, type: 3}
+      propertyPath: healthPoints
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 6146150809412878957, guid: 737b458a4b5a26f4bb1c24f01a32fd1d,
         type: 3}
       propertyPath: m_Name
@@ -98,7 +102,7 @@ PrefabInstance:
     - target: {fileID: 6146150809412878961, guid: 737b458a4b5a26f4bb1c24f01a32fd1d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.6644783
+      value: -5.67
       objectReference: {fileID: 0}
     - target: {fileID: 6146150809412878961, guid: 737b458a4b5a26f4bb1c24f01a32fd1d,
         type: 3}

@@ -18,7 +18,6 @@ namespace RPG.Control
         [SerializeField] bool shouldMove = true;
 
         float distanceToPlayer;
-        Vector3 initialGuardPosition;
         float timeSinceLastSeenPlayer = Mathf.Infinity;   // timeSinceLastSawPlayer
         private int currentWaypointIndex = 0;
 
@@ -40,8 +39,6 @@ namespace RPG.Control
             player = GameObject.FindWithTag("Player");
             actionScheduler = GetComponent<ActionScheduler>();
             agent = GetComponent<NavMeshAgent>();
-
-            initialGuardPosition = transform.position;
         }
 
         private void Update()
@@ -55,15 +52,13 @@ namespace RPG.Control
 
             if (distanceToPlayer <= chaseDistance)
             {
-                actionScheduler.CancelCurrentAction();
-                fighter.Attack(player);
-                timeSinceLastSeenPlayer = 0;
+                AttackState();
             }
             else if (distanceToPlayer > chaseDistance)
             {
                 if (timeSinceLastSeenPlayer <= suspicionTime)
                 {
-                    WaitInSuspense();
+                    WaitInSuspenseState();
                 }
                 else if (timeSinceLastSeenPlayer > suspicionTime)
                 {
@@ -74,7 +69,14 @@ namespace RPG.Control
             timeSinceLastSeenPlayer += Time.deltaTime;
         }
 
-        private void WaitInSuspense()
+        void AttackState()
+        {
+            actionScheduler.CancelCurrentAction();
+            fighter.Attack(player);
+            timeSinceLastSeenPlayer = 0;
+        }
+
+        private void WaitInSuspenseState()
         {
             actionScheduler.CancelCurrentAction();
         }
@@ -84,7 +86,7 @@ namespace RPG.Control
             actionScheduler.CancelCurrentAction();
 
             Vector3 nextPosition = GetCurrentWaypointPosition(currentWaypointIndex);
-            mover.StartMovement(nextPosition);    //  THIS IS WHERE WE MOVE
+            mover.StartMovement(nextPosition);  
 
             if (AtWaypoint())
             {
@@ -123,6 +125,5 @@ namespace RPG.Control
             Gizmos.color = Color.blue;
             Gizmos.DrawWireSphere(transform.position, chaseDistance);
         }
-
     }
 }
