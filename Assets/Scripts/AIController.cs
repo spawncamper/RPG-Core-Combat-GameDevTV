@@ -14,11 +14,13 @@ namespace RPG.Control
     {
         [SerializeField] float chaseDistance = 5f;
         [SerializeField] float suspicionTime = 5f;
+        [SerializeField] float dwellTimeAtWaypoint = 2f;
         [SerializeField] PatrolPath patrolPath;
         [SerializeField] bool shouldMove = true;
 
         float distanceToPlayer;
         float timeSinceLastSeenPlayer = Mathf.Infinity;   // timeSinceLastSawPlayer
+        float waitTimeAtCurrentWaypoint = 0f;
         private int currentWaypointIndex = 0;
 
         Fighter fighter;
@@ -90,8 +92,7 @@ namespace RPG.Control
 
             if (AtWaypoint())
             {
-                int nextWaypointIndex = patrolPath.CycleWaypoint(currentWaypointIndex);
-                currentWaypointIndex = nextWaypointIndex;
+                WaitThenMoveToNextWaypoint();
             }
 
             print(currentWaypointIndex);
@@ -112,6 +113,23 @@ namespace RPG.Control
                 else return false;
             }
             else return false;
+        }
+
+        void WaitThenMoveToNextWaypoint()
+        {
+            waitTimeAtCurrentWaypoint += Time.deltaTime;
+
+            if (waitTimeAtCurrentWaypoint > dwellTimeAtWaypoint)
+            {
+                SetNextWaypoint();
+                waitTimeAtCurrentWaypoint = 0f;
+            }
+        }
+
+        void SetNextWaypoint()
+        {
+            int nextWaypointIndex = patrolPath.CycleWaypoint(currentWaypointIndex);
+            currentWaypointIndex = nextWaypointIndex;
         }
 
         private Vector3 GetCurrentWaypointPosition(int wayPointIndex)
