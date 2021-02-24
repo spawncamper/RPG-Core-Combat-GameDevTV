@@ -17,6 +17,8 @@ namespace RPG.Control
         [SerializeField] float dwellTimeAtWaypoint = 2f;
         [SerializeField] PatrolPath patrolPath;
         [SerializeField] bool shouldMove = true;
+        [SerializeField] float attackSpeed = 5f;
+        [SerializeField] float patrolSpeed = 3f;
 
         float distanceToPlayer;
         float timeSinceLastSeenPlayer = Mathf.Infinity;   // timeSinceLastSawPlayer
@@ -74,6 +76,7 @@ namespace RPG.Control
         void AttackState()
         {
             actionScheduler.CancelCurrentAction();
+            agent.speed = attackSpeed;
             fighter.Attack(player);
             timeSinceLastSeenPlayer = 0;
         }
@@ -86,7 +89,7 @@ namespace RPG.Control
         private void PatrolState()
         {
             actionScheduler.CancelCurrentAction();
-
+            agent.speed = patrolSpeed;
             Vector3 nextPosition = GetCurrentWaypointPosition(currentWaypointIndex);
             mover.StartMovement(nextPosition);  
 
