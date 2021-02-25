@@ -1263,16 +1263,6 @@ PrefabInstance:
       objectReference: {fileID: 536030662}
     - target: {fileID: 1323379655550572238, guid: eee25fe1041655e449f9396bae7b431b,
         type: 3}
-      propertyPath: attackSpeed
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1323379655550572238, guid: eee25fe1041655e449f9396bae7b431b,
-        type: 3}
-      propertyPath: patrolSpeed
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1323379655550572238, guid: eee25fe1041655e449f9396bae7b431b,
-        type: 3}
       propertyPath: dwellTimeAtWaypoint
       value: 0
       objectReference: {fileID: 0}
@@ -1571,6 +1561,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2749394470220050659, guid: 681b204c6df3c9f4c9ae5a55703f18f4,
+        type: 3}
+      propertyPath: attackDamage
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2749394470220050662, guid: 681b204c6df3c9f4c9ae5a55703f18f4,
         type: 3}
       propertyPath: m_RootOrder
