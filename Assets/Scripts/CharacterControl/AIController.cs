@@ -93,8 +93,6 @@ namespace RPG.Control
             {
                 WaitThenMoveToNextWaypoint();
             }
-
-            print(currentWaypointIndex);
         }
 
         private bool AtWaypoint()

@@ -26,8 +26,6 @@ namespace RPG.Core
             {
                 Die();
             }
-
-            print(healthPoints);
         }
 
         private void Die()

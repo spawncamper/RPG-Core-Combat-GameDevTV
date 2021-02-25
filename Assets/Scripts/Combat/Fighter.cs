@@ -81,6 +81,7 @@ namespace RPG.Combat
             //animator.ResetTrigger("Attack");
             animator.SetTrigger("stopAttack");
             target = null;
+            GetComponent<CharacterMovement>().Cancel();
         }
 
         // Animation Event, in Unarmed attack animation, called within Animator
