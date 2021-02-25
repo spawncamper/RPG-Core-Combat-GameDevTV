@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using RPG.Movement;
 using RPG.Core;
 
@@ -22,12 +20,14 @@ namespace RPG.Combat
         CharacterMovement characterMovement;
         ActionScheduler actionScheduler;
         Animator animator;
+        Health health;
 
         private void Start()
         {
             characterMovement = GetComponent<CharacterMovement>();
             actionScheduler = GetComponent<ActionScheduler>();
             animator = GetComponent<Animator>();
+            health = GetComponent<Health>();
         }
 
         private void Update()
@@ -36,8 +36,8 @@ namespace RPG.Combat
 
             if (target == null) return;
 
-            if (target != null)
-            {
+            if (target != null && !health.IsDead())
+           {
                 GetInRangeAndAttack();
             } 
         }
@@ -59,6 +59,7 @@ namespace RPG.Combat
         private void AttackBehavior()
         {
             characterMovement.Cancel();                  // TriggerAttack()
+                             
             transform.LookAt(target.transform);
 
             if (timeSinceLastAttack >= timeBetweenAttacks && !target.GetComponent<Health>().IsDead())
