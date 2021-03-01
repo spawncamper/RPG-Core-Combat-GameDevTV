@@ -30,15 +30,20 @@ public class Portal : MonoBehaviour
 
     Portal GetOtherPortal()
     {
-        Portal otherPortal = FindObjectOfType<Portal>();
-        return otherPortal;
+        foreach (Portal otherPortal in FindObjectsOfType<Portal>())
+        {
+            if (otherPortal == this) continue;
+
+            return otherPortal;
+        }
+        return null;
     }
 
-    void SpawnPlayerLocation(Portal otherPortal)
-    {
-        Vector3 playerSpawnLocation = spawnPoint.position;
+    void SpawnPlayerLocation(Portal otherPortal)   // UpdatePlayer(Portal otherPortal)
+    { 
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
-        playerObj.transform.position = playerSpawnLocation;
+        playerObj.transform.position = otherPortal.spawnPoint.position;
+        playerObj.transform.rotation = otherPortal.spawnPoint.rotation;
     }
 
 }
