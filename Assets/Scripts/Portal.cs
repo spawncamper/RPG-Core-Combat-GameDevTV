@@ -5,8 +5,14 @@ using UnityEngine.AI;
 
 public class Portal : MonoBehaviour
 {
+    enum DestinationIdentifier
+    {
+        A, B, C
+    }
+    
     [SerializeField] string sceneName;
-    [SerializeField] Transform spawnPoint; 
+    [SerializeField] Transform spawnPoint;
+    [SerializeField] DestinationIdentifier destination;
 
     private void Start()
     {
