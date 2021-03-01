@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.AI;
 
 public class Portal : MonoBehaviour
 {
@@ -42,7 +43,7 @@ public class Portal : MonoBehaviour
     void SpawnPlayerLocation(Portal otherPortal)   // UpdatePlayer(Portal otherPortal)
     { 
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
-        playerObj.transform.position = otherPortal.spawnPoint.position;
+        playerObj.GetComponent<NavMeshAgent>().Warp(otherPortal.spawnPoint.position);
         playerObj.transform.rotation = otherPortal.spawnPoint.rotation;
     }
 
