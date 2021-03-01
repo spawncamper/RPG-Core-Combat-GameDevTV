@@ -3868,6 +3868,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 211583283201764215, guid: 03cc7702e1f9f5a498f07baa927473eb,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 211583283201764215, guid: 03cc7702e1f9f5a498f07baa927473eb,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.23
+      objectReference: {fileID: 0}
     - target: {fileID: 3066787275328485376, guid: 03cc7702e1f9f5a498f07baa927473eb,
         type: 3}
       propertyPath: m_RootOrder
@@ -3923,10 +3933,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3547952489919503368, guid: 03cc7702e1f9f5a498f07baa927473eb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5152360151538834349, guid: 03cc7702e1f9f5a498f07baa927473eb,
         type: 3}
       propertyPath: m_Name
-      value: Portal
+      value: Portal2
       objectReference: {fileID: 0}
     - target: {fileID: 6288169390505123122, guid: 03cc7702e1f9f5a498f07baa927473eb,
         type: 3}
