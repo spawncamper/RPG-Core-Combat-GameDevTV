@@ -16,6 +16,12 @@ public class Portal : MonoBehaviour
     [SerializeField] float fadeOutTimer = 5f;
     [SerializeField] float fadeInTimer = 5f;
     [SerializeField] float sceneLoadWaitTime = 0.5f;
+    GameManager gameManager;
+
+    private void Start()
+    {
+
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -25,10 +31,10 @@ public class Portal : MonoBehaviour
         }
     }
 
+    // this needs to go into Scene Manager
     private IEnumerator SceneTransition()   // Transition()
     {
         DontDestroyOnLoad(this);
-        
         FadeBetweenScenes fader = FindObjectOfType<FadeBetweenScenes>();   // Fader
         
         yield return fader.FadeOut(fadeOutTimer);

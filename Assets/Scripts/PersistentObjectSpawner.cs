@@ -13,9 +13,6 @@ public class PersistentObjectSpawner : MonoBehaviour
         PersistentObjectSpawner persistentObjectSpawner = FindObjectOfType<PersistentObjectSpawner>();
         if (persistentObjectSpawner == null)
             DontDestroyOnLoad(this);
-
-        sceneIndex = SceneManager.GetActiveScene().buildIndex;
-        print(sceneIndex);
     }
 
     private void Awake()
@@ -24,7 +21,7 @@ public class PersistentObjectSpawner : MonoBehaviour
         {
             return;
         }
-        else if (initialSpawn == false && sceneIndex > 0)
+        else if (initialSpawn == false)
         {
             initialSpawn = true;
             SpawnPersistentObjects();
@@ -33,7 +30,7 @@ public class PersistentObjectSpawner : MonoBehaviour
 
     void SpawnPersistentObjects()
     {
-        GameObject PersistenObjects = Instantiate(persistentObjectPrefab, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
-        DontDestroyOnLoad(PersistenObjects);
+        GameObject persistentObjects = Instantiate(persistentObjectPrefab, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+        DontDestroyOnLoad(persistentObjects);
     }
 }
