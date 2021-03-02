@@ -1,16 +1,21 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PersistentObjectSpawner : MonoBehaviour
 {
     [SerializeField] GameObject persistentObjectPrefab;
 
     static bool initialSpawn = false;    // hasSpawned
+    int sceneIndex;
 
     private void Start()
     {
         PersistentObjectSpawner persistentObjectSpawner = FindObjectOfType<PersistentObjectSpawner>();
         if (persistentObjectSpawner == null)
             DontDestroyOnLoad(this);
+
+        sceneIndex = SceneManager.GetActiveScene().buildIndex;
+        print(sceneIndex);
     }
 
     private void Awake()
@@ -19,7 +24,7 @@ public class PersistentObjectSpawner : MonoBehaviour
         {
             return;
         }
-        else if (initialSpawn == false)
+        else if (initialSpawn == false && sceneIndex > 0)
         {
             initialSpawn = true;
             SpawnPersistentObjects();
