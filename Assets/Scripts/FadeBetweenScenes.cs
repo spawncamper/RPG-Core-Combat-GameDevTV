@@ -4,10 +4,9 @@ using UnityEngine;
 public class FadeBetweenScenes : MonoBehaviour
 {
     // Fader.cs
-    [SerializeField] float fadeOutTime = 5f;
-    [SerializeField] float fadeInTime = 2f;
+//    [SerializeField] float fadeOutTime = 5f;
+//    [SerializeField] float fadeInTime = 2f;
     [SerializeField] float fadeOutTargetAlpha = 1f;
- //   [SerializeField] float alphaAtStart = 0f;
     CanvasGroup canvasGroup;
     int nFrames;
     int remainingFrames;
@@ -16,13 +15,6 @@ public class FadeBetweenScenes : MonoBehaviour
     private void Start()
     {
         canvasGroup = GetComponent<CanvasGroup>();
-        StartCoroutine(CutBetweenScenes());
-    }
-
-    IEnumerator CutBetweenScenes()
-    {
-        yield return FadeOut(fadeOutTime);
-        yield return FadeIn(fadeInTime);
     }
 
     public IEnumerator FadeOut(float fadeOutTime)

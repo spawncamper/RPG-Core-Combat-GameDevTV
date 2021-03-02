@@ -13,6 +13,9 @@ public class Portal : MonoBehaviour
     [SerializeField] string sceneName;
     [SerializeField] Transform spawnPoint;
     [SerializeField] PortalEnum portalEnum;   // PortalIdentifier destination
+    [SerializeField] float fadeOutTimer = 5f;
+    [SerializeField] float fadeInTimer = 5f;
+    [SerializeField] float sceneLoadWaitTime = 0.5f;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -25,9 +28,18 @@ public class Portal : MonoBehaviour
     private IEnumerator SceneTransition()   // Transition()
     {
         DontDestroyOnLoad(this);
+        
+        FadeBetweenScenes fader = FindObjectOfType<FadeBetweenScenes>();   // Fader
+        
+        yield return fader.FadeOut(fadeOutTimer);
         yield return SceneManager.LoadSceneAsync(sceneName);
-        Portal otherPortal = GetOtherPortal(); 
+        
+        Portal otherPortal = GetOtherPortal();
         SpawnPlayerLocation(otherPortal);  // UpdatePlayer()
+
+        yield return new WaitForSeconds(sceneLoadWaitTime);
+        yield return fader.FadeIn(fadeInTimer);
+        
         Destroy(gameObject);
     }
 
