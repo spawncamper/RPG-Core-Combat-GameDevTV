@@ -5,19 +5,14 @@ using UnityEngine.AI;
 
 public class Portal : MonoBehaviour
 {
-    enum DestinationIdentifier
+    enum PortalEnum
     {
         A, B, C
     }
     
     [SerializeField] string sceneName;
     [SerializeField] Transform spawnPoint;
-    [SerializeField] DestinationIdentifier destination;
-
-    private void Start()
-    {
-        DontDestroyOnLoad(this);
-    }
+    [SerializeField] PortalEnum portalEnum;   // PortalIdentifier destination
 
     private void OnTriggerEnter(Collider other)
     {
@@ -29,6 +24,7 @@ public class Portal : MonoBehaviour
 
     private IEnumerator SceneTransition()   // Transition()
     {
+        DontDestroyOnLoad(this);
         yield return SceneManager.LoadSceneAsync(sceneName);
         Portal otherPortal = GetOtherPortal(); 
         SpawnPlayerLocation(otherPortal);  // UpdatePlayer()
@@ -39,9 +35,21 @@ public class Portal : MonoBehaviour
     {
         foreach (Portal otherPortal in FindObjectsOfType<Portal>())
         {
-            if (otherPortal == this) continue;
-
-            return otherPortal;
+            if (otherPortal == this)
+            { 
+                continue; 
+            }
+            else if (otherPortal != this)
+            {
+                if (otherPortal.portalEnum == portalEnum)
+                { 
+                    return otherPortal; 
+                }
+                else if (otherPortal.portalEnum != portalEnum)
+                { 
+                    continue; 
+                }
+            } 
         }
         return null;
     }
@@ -52,5 +60,4 @@ public class Portal : MonoBehaviour
         playerObj.GetComponent<NavMeshAgent>().Warp(otherPortal.spawnPoint.position);
         playerObj.transform.rotation = otherPortal.spawnPoint.rotation;
     }
-
 }
