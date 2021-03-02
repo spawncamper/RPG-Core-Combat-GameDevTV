@@ -48,21 +48,24 @@ namespace RPG.Control
 
         private void FindDistanceToPlayerAndAttack()
         {
-            distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
+            if (player != null)
+            {
+                distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
 
-            if (distanceToPlayer <= chaseDistance)
-            {
-                AttackState();
-            }
-            else if (distanceToPlayer > chaseDistance)
-            {
-                if (timeSinceLastSeenPlayer <= suspicionTime)
+                if (distanceToPlayer <= chaseDistance)
                 {
-                    WaitInSuspenseState();
+                    AttackState();
                 }
-                else if (timeSinceLastSeenPlayer > suspicionTime)
+                else if (distanceToPlayer > chaseDistance)
                 {
-                    PatrolState();                // PatrolBehavior
+                    if (timeSinceLastSeenPlayer <= suspicionTime)
+                    {
+                        WaitInSuspenseState();
+                    }
+                    else if (timeSinceLastSeenPlayer > suspicionTime)
+                    {
+                        PatrolState();                // PatrolBehavior
+                    }
                 }
             }
 
