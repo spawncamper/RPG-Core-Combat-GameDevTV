@@ -3,7 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class PersistentObjectSpawner : MonoBehaviour
 {
-    [SerializeField] GameObject persistentObjectPrefab;
+    [SerializeField] GameObject corePrefab;
+    [SerializeField] GameObject[] CorePrefabs;
 
     static bool initialSpawn = false;    // hasSpawned
     int sceneIndex;
@@ -28,9 +29,11 @@ public class PersistentObjectSpawner : MonoBehaviour
         }
     }
 
+
+
     void SpawnPersistentObjects()
     {
-        GameObject persistentObjects = Instantiate(persistentObjectPrefab, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
-        DontDestroyOnLoad(persistentObjects);
+ //       GameObject persistentObjects = Instantiate(persistentObjectPrefab, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+//        DontDestroyOnLoad(persistentObjects);
     }
 }

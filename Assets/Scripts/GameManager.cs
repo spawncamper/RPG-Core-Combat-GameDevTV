@@ -1,29 +1,21 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using RPG.Core;
-using RPG.Control;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] GameObject corePrefab;
+    [SerializeField] GameObject systemPrefab;
+
+    static bool corePrefabsSpawned = false;    // hasSpawned
+    static bool systemPrefabsSpawned = false;
+    public static GameManager instance;
     int sceneIndex;
-    static bool gameManagerSpawned = false;
-    static GameManager instance;
 
     List<AsyncOperation> loadOperations;
 
     private void Awake()
-    {
-        if (gameManagerSpawned == true)
-        {
-            return;
-        }
-        else if (gameManagerSpawned == false)
-        {
-            gameManagerSpawned = true;
-            DontDestroyOnLoad(this);
-        }
-
+    {        
         if (instance == null)
         {
             instance = this;
@@ -33,11 +25,44 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
             Debug.LogError("[GameManager] Second instance of GameManager detected and deleted");
         }
+
+        GameManager GameManager = FindObjectOfType<GameManager>();
+
+        if (GameManager == null)
+            DontDestroyOnLoad(this);
+
+        if (corePrefabsSpawned == true)
+        {
+            return;
+        }
+        else if (corePrefabsSpawned == false)
+        {
+            corePrefabsSpawned = true;
+            SpawnCorePrefabs();
+        }
+
+        if (systemPrefabsSpawned == true)
+        {
+            return;
+        }
+        else if (systemPrefabsSpawned == false)
+        {
+            systemPrefabsSpawned = true;
+            InstantiateSystemPrefabs();
+        }
     }
 
     private void Start()
     {
         loadOperations = new List<AsyncOperation>();
+    }
+
+    private void OnDestroy()
+    {
+        if (instance == this)
+        {
+            instance = null;
+        }
     }
 
     void OnLoadOperationComplete(AsyncOperation asyncOperation)
@@ -51,6 +76,18 @@ public class GameManager : MonoBehaviour
     void OnUnloadOperationComplete(AsyncOperation asyncOperation)
     {
 
+    }
+
+    void InstantiateSystemPrefabs()
+    {
+        GameObject persistentObjects = Instantiate(systemPrefab, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+        DontDestroyOnLoad(persistentObjects);
+    }
+
+    void SpawnCorePrefabs()
+    {
+        GameObject persistentObjects = Instantiate(corePrefab, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+        DontDestroyOnLoad(persistentObjects);
     }
 
     public void LoadLevel(int sceneIndex)
