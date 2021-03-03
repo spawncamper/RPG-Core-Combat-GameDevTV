@@ -15,6 +15,7 @@ public class FadeBetweenScenes : MonoBehaviour
     private void Start()
     {
         canvasGroup = GetComponent<CanvasGroup>();
+        canvasGroup.alpha = 1f;
     }
 
     public IEnumerator FadeOut(float fadeOutTime)
