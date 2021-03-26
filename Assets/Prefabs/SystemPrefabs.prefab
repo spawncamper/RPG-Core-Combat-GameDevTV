@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9067151552883060669}
   - component: {fileID: 5900331335353818164}
   m_Layer: 0
-  m_Name: LoadSceneButton
+  m_Name: StartGameButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -121,6 +121,18 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4373950026471694401}
         m_MethodName: MainMenuFadeOut
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 5126397849784109882, guid: f51279bdfdb1b1b489ff4b208065817f,
+          type: 3}
+        m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

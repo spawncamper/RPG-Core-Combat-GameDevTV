@@ -3,9 +3,7 @@ using UnityEngine;
 
 public class FadeBetweenScenes : MonoBehaviour
 {
-    // Fader.cs
-//    [SerializeField] float fadeOutTime = 5f;
-//    [SerializeField] float fadeInTime = 2f;
+    // Fader.cs -- This Class is a RECEIVER ONLY -- PUBLIC CLASS
     [SerializeField] float fadeOutTargetAlpha = 1f;
     CanvasGroup canvasGroup;
     int nFrames;
@@ -23,7 +21,7 @@ public class FadeBetweenScenes : MonoBehaviour
         nFrames = Mathf.RoundToInt(fadeOutTime / Time.deltaTime);
         remainingFrames = nFrames;
         deltaAlpha = fadeOutTargetAlpha / nFrames;
-        while (remainingFrames > 0) // alpha is less than 1
+        while (remainingFrames > 0) 
         {
             canvasGroup.alpha += deltaAlpha;
             remainingFrames--;
@@ -36,7 +34,7 @@ public class FadeBetweenScenes : MonoBehaviour
         nFrames = Mathf.RoundToInt(fadeInTime / Time.deltaTime);
         remainingFrames = nFrames;
         deltaAlpha = fadeOutTargetAlpha / nFrames;
-        while (remainingFrames > 0) // alpha is less than 1
+        while (remainingFrames > 0) 
         {
             canvasGroup.alpha -= deltaAlpha;
             remainingFrames--;

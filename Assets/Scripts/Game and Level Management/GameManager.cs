@@ -3,22 +3,21 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
-{
+{    
     [SerializeField] GameObject corePrefab;
     [SerializeField] GameObject systemPrefab;
 
     static bool corePrefabsSpawned = false;    // hasSpawned
     static bool systemPrefabsSpawned = false;
-    public static GameManager instance;
-    int sceneIndex;
+    public static GameManager Instance;
 
     List<AsyncOperation> loadOperations;
 
     private void Awake()
     {        
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
         }
         else
         {
@@ -59,9 +58,9 @@ public class GameManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (instance == this)
+        if (Instance == this)
         {
-            instance = null;
+            Instance = null;
         }
     }
 
@@ -71,12 +70,15 @@ public class GameManager : MonoBehaviour
         {
             loadOperations.Remove(asyncOperation);
         }
+
+        Debug.Log("Load Complete");
     }
 
     void OnUnloadOperationComplete(AsyncOperation asyncOperation)
     {
-
+        Debug.Log("Unload complete");
     }
+
 
     void InstantiateSystemPrefabs()
     {
@@ -113,5 +115,17 @@ public class GameManager : MonoBehaviour
         }
 
         asyncOp.completed += OnUnloadOperationComplete;
+    }
+
+
+    public void StartGame()
+    {
+        LoadLevel(1);
+    }
+
+    public void QuitGame()
+    {
+        // implement Auto saving and other features
+        Application.Quit();
     }
 }

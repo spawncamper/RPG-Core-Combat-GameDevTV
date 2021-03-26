@@ -4,9 +4,6 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    // function that receives animation events
-    // functions to play animation events
-
     [SerializeField] float mainMenuFadeOutTimer = 5f;
     [SerializeField] GameObject startButton;
 
