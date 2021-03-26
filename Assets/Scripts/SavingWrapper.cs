@@ -12,6 +12,13 @@ public class SavingWrapper : MonoBehaviour
         {
             //           GetComponent<SavingSystem>().Save(defaultSaveFile);
             print("Ctrl + G");
+
+            GetComponent<SavingSystem>().Save(defaultSaveFile);
         }
+
+        if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.L))
+        {
+            GetComponent<SavingSystem>().Load(defaultSaveFile);
+        }    
     }
 }
