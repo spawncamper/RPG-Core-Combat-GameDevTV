@@ -95,11 +95,13 @@ public class GameManager : MonoBehaviour
     public void LoadLevel(int sceneIndex)
     {
         AsyncOperation asyncOp = SceneManager.LoadSceneAsync(sceneIndex);
+
         if (asyncOp == null)
         {
             Debug.LogError("[GameManager] Unable to load scene " + sceneIndex);
             return;
         }
+
         asyncOp.completed += OnLoadOperationComplete;
         loadOperations.Add(asyncOp);
         int currentSceneIndex = sceneIndex;
@@ -108,6 +110,7 @@ public class GameManager : MonoBehaviour
     public void UnloadLevel(int sceneIndex)
     {
         AsyncOperation asyncOp = SceneManager.UnloadSceneAsync(sceneIndex);
+
         if (asyncOp == null)
         {
             Debug.LogError("[GameManager] Unable to unload scene " + sceneIndex);
@@ -126,6 +129,7 @@ public class GameManager : MonoBehaviour
     public void QuitGame()
     {
         // implement Auto saving and other features
+
         Application.Quit();
     }
 }
